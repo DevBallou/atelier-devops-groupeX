@@ -18,7 +18,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
-
       - name: Install dependencies
         run: npm install
 
@@ -28,7 +27,7 @@ jobs:
         run: echo "Lint not configured for this project"
 
       - name: Run unit tests
-        run: npm test -- --watch=false --browsers=ChromeHeadless
+        run: npx ng test demo --watch=false --browsers=ChromeHeadless
 
       - name: Build Angular app
-        run: npm run build -- --prod
+        run: npm run build
