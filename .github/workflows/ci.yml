@@ -34,6 +34,13 @@ jobs:
             supabaseAnonKey: '${{ vars.VITE_SUPABASE_ANON_KEY }}'
           };" > src/environments/environment.prod.ts
 
+      - name: adding environment variables
+        run: |
+          echo "export const environment = {
+            production: true,
+            supabaseUrl: '${{ vars.VITE_SUPABASE_URL }}',
+            supabaseAnonKey: '${{ vars.VITE_SUPABASE_ANON_KEY }}' };" > src/environments/environment.prod.ts
+
       # - name: Run lint
       #   run: npm run lint
       - name: Skip lint (not configured)
@@ -43,9 +50,9 @@ jobs:
         run: npx ng test demo --watch=false --browsers=ChromeHeadless
 
       # - name: Build Angular app
-      #   run: npm run build
+      #   run: npm run build
       - name: Build Angular
-        run: npm run build -- --base-href="/${{ github.event.repository.name }}/" --configuration production
+        run: npm run build -- --base-href='/${{ github.event.repository.name }}/' --configuration production
       - name: Debug dist folder
         run: ls -la dist
       - name: Upload artifact
@@ -58,8 +65,8 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
+
         uses: actions/deploy-pages@v4
