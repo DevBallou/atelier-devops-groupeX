@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { environment } from './environment/environment.prod';
 
 export interface Note {
   id?: string;
@@ -18,9 +19,10 @@ export class SupabaseService {
 
   constructor() {
     this.supabase = createClient(
-      'https://tifzpikozynkynghzddy.supabase.co',
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRpZnpwaWtvenlua3luZ2h6ZGR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzA1MDY3MTcsImV4cCI6MjA4NjA4MjcxN30.kQEkMUeK9k3V887G6aNATDMPAXH27R-AIepz3jT7i-Y'
+      environment.supabaseUrl,
+      environment.supabaseAnonKey
     );
+      
   }
 
   async getNotesByDate(date: string): Promise<Note[]> {
