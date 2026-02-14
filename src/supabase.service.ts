@@ -18,6 +18,8 @@ export class SupabaseService {
   private supabase: SupabaseClient;
 
   constructor() {
+    console.log('SupabaseService initialized with URL:', environment.supabaseUrl);
+    console.log('SupabaseService initialized with key:', environment.supabaseAnonKey);
     this.supabase = createClient(
       environment.supabaseUrl,
       environment.supabaseAnonKey
