@@ -66,6 +66,8 @@
             "tsConfig": "tsconfig.spec.json"
           }
         }
+
+
       },
       "prefix": "app",
       "projectType": "application",
